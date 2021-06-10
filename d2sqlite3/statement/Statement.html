@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Struct Statement</title>
+		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../d2sqlite3.html">d2sqlite3</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/database.html">database</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/library.html">library</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/results.html">results</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/sqlite3.html">sqlite3</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../../d2sqlite3/statement.html">statement</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Struct Statement</h1><p>A prepared statement.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="kwd">struct</span> <span class="typ">Statement</span>
+			<span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section><p>This struct is a reference-counted wrapper around a <code class="lang-d"><span class="pln">sqlite3_stmt</span><span class="pun">*</span></code> pointer.
+Instances of this struct are typically returned by <code class="lang-d"><span class="typ">Database<wbr/></span><span class="pun">.</span><span class="pln">prepare</span><span class="pun">()</span></code>.
+</p>
+</section>
+
+			<section><h2>Methods</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.bind.html" class="public">
+								<code>bind</code>
+							</a>
+							<span class="tableEntryAnnotation">(index, value)</span>
+						</td>
+						<td>Binds values to parameters of this statement, using parameter index.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.bind.html" class="public">
+								<code>bind</code>
+							</a>
+							<span class="tableEntryAnnotation">(name, value)</span>
+						</td>
+						<td>Binds values to parameters of this statement, using parameter names.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.bindAll.html" class="public">
+								<code>bindAll</code>
+							</a>
+							<span class="tableEntryAnnotation">(args)</span>
+						</td>
+						<td>Binds all the arguments at once in order.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.clearBindings.html" class="public">
+								<code>clearBindings</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Clears the bindings.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.empty.html" class="public">
+								<code>empty</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Tells whether the statement is empty (no SQL statement).
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.execute.html" class="public">
+								<code>execute</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Executes the statement and return a (possibly empty) range of results.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.finalize.html" class="public">
+								<code>finalize</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Explicitly finalizes the prepared statement.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.handle.html" class="public">
+								<code>handle</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Gets the SQLite internal handle of the statement.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.inject.html" class="public">
+								<code>inject</code>
+							</a>
+							<span class="tableEntryAnnotation">(args)</span>
+						</td>
+						<td>Binds arguments, executes and resets the statement, in one call.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.inject.html" class="public">
+								<code>inject</code>
+							</a>
+							<span class="tableEntryAnnotation">(obj)</span>
+						</td>
+						<td>Binds the fields of a struct in order, executes and resets the statement, in one call.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.inject.html" class="public">
+								<code>inject</code>
+							</a>
+							<span class="tableEntryAnnotation">(obj)</span>
+						</td>
+						<td>Binds iterable values in order, executes and resets the statement, in one call.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.parameterCount.html" class="public">
+								<code>parameterCount</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Gets the count of bind parameters.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.parameterIndex.html" class="public">
+								<code>parameterIndex</code>
+							</a>
+							<span class="tableEntryAnnotation">(name)</span>
+						</td>
+						<td>Gets the index of a bind parameter.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.parameterName.html" class="public">
+								<code>parameterName</code>
+							</a>
+							<span class="tableEntryAnnotation">(index)</span>
+						</td>
+						<td>Gets the name of the bind parameter at the given index.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/statement/Statement.reset.html" class="public">
+								<code>reset</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Resets a this statement before a new execution.
+</td>
+					</tr>
+				</table>
+			</section>
+			
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Nicolas Sicard (biozic) and other contributors at <a href="https://github.com/biozic/d2sqlite3">https://github.com/biozic/d2sqlite3</a>
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>Copyright 2011-18 Nicolas Sicard.
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p><a href="http://www.boost.org/LICENSE_1_0.txt">Boost License 1.0</a>.
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

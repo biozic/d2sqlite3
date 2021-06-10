@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Function Database.createFunction</title>
+		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../d2sqlite3.html">d2sqlite3</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module selected">
+						<a href="../../d2sqlite3/database.html">database</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/library.html">library</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/results.html">results</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/sqlite3.html">sqlite3</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/statement.html">statement</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Function Database.createFunction</h1><p>Creates and registers a new function in the database.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">void</span> <span class="pln">createFunction</span>(T)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">string</span> <span class="pln">name</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">T</span> <span class="pln">fun</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<a href="../../d2sqlite3/database/Deterministic.html"><span class="typ">Deterministic</span></a> <span class="pln">det</span> <span class="pun">=</span> <span class="typ">Deterministic<wbr/></span><span class="pun">.</span><span class="pln">yes</span>
+			<br/>
+			<span class="pun">)</span>
+			<br/>
+			<span class="kwd">if</span> <span class="pun">(</span><span class="pln">isFunctionPointer</span><span class="pun">!</span><span class="pln">T </span><span class="pun">|| </span><span class="pln">isDelegate</span><span class="pun">!</span><span class="pln">T</span><span class="pun">);</span>
+			<br/>
+			<br/>
+			<span class="typ">void</span> <span class="pln">createFunction</span>(T)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">string</span> <span class="pln">name</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">T</span> <span class="pln">fun</span> <span class="pun">=</span> <span class="kwd">null</span>
+			<br/>
+			<span class="pun">)</span>
+			<br/>
+			<span class="kwd">if</span> <span class="pun">(</span><span class="kwd">is</span><span class="pun">(</span><span class="pln">T </span><span class="pun">== </span><span class="kwd">typeof</span><span class="pun">(</span><span class="kwd">null</span><span class="pun">))</span><span class="pun">);</span>
+					</div>
+				</code>
+			</div>
+			<section><p>If a function with the same name and the same arguments already exists, it is replaced
+    by the new one.
+</p>
+
+<p>    The memory associated with the function will be released when the database connection
+    is closed.
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="name">name</td><td> The name that the function will have in the database.
+</td></tr>
+<tr><td id="fun">fun</td><td> a delegate or function that implements the function. <i>fun</i>
+        must satisfy the following criteria:
+            <ul>                <li>It must not be variadic.</li>
+                <li>Its arguments must all have a type that is compatible with SQLite types:
+                it must be a boolean or numeric type, a string, an array, <code class="lang-d"><span class="kwd">null</span></code>,
+                or a <code class="lang-d"><span class="typ">Nullable</span><span class="pun">!</span><span class="pln">T</span></code> where T is any of the previous types.</li>
+                <li>Its return value must also be of a compatible type.</li>
+            </ul>
+            or
+            <ul>                <li>It must be a normal or type-safe variadic function where the arguments
+                are of type <code class="lang-d"><span class="typ">ColumnData</span></code>. In other terms, the signature of the function must be:
+                <code class="lang-d"><span class="kwd">function</span><span class="pun">(</span><span class="typ">ColumnData</span><span class="pun">[] </span><span class="pln">args</span><span class="pun">)</span></code> or <code class="lang-d"><span class="kwd">function</span><span class="pun">(</span><span class="typ">ColumnData</span><span class="pun">[] </span><span class="pln">args</span><span class="pun">...)</span></code></li>
+                <li>Its return value must be a boolean or numeric type, a string, an array, <code class="lang-d"><span class="kwd">null</span></code>,
+                or a <code class="lang-d"><span class="typ">Nullable</span><span class="pun">!</span><span class="pln">T</span></code> where T is any of the previous types.</li>
+            </ul>
+        Pass a <code class="lang-d"><span class="kwd">null</span></code> function pointer to delete the function from the database connection.
+</td></tr>
+<tr><td id="det">det</td><td> Tells SQLite whether the result of the function is deterministic, i.e. if the
+        result is the same when called with the same parameters. Recent versions of SQLite
+        perform optimizations based on this. Set to <code class="lang-d"><a href="../../d2sqlite3/database/Deterministic.html#no"><span class="typ">Deterministic<wbr/></span><span class="pun">.</span><span class="pln">no</span></a></code> otherwise.</td></tr>
+</table>
+</section>
+<section><h2>See Also</h2>
+<p><a href="http://www.sqlite.org/c3ref/create_function.html">http://www.sqlite.org/c3ref/create_function.html</a>.
+</p>
+</section>
+<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="typ">string </span><span class="pln">star</span><span class="pun">(</span><span class="typ">int </span><span class="pln">count</span><span class="pun">, </span><span class="typ">string </span><span class="pln">starSymbol </span><span class="pun">= </span><span class="str">"*"</span><span class="pun">)
+{
+    </span><span class="kwd">import </span><span class="pln">std<wbr/></span><span class="pun">.</span><span class="pln">range </span><span class="pun">: </span><span class="pln">repeat</span><span class="pun">;
+    </span><span class="kwd">import </span><span class="pln">std<wbr/></span><span class="pun">.</span><span class="pln">array </span><span class="pun">: </span><span class="pln">join</span><span class="pun">;
+
+    </span><span class="kwd">return </span><span class="pln">starSymbol<wbr/></span><span class="pun">.</span><span class="pln">repeat</span><span class="pun">(</span><span class="pln">count</span><span class="pun">)<wbr/>.</span><span class="pln">join</span><span class="pun">;
+}
+
+</span><span class="kwd">auto </span><span class="pln">db </span><span class="pun">= <a href="../../d2sqlite3/database/Database.html"></span><span class="typ">Database</span></a><span class="pun">(</span><span class="str">":memory:"</span><span class="pun">);
+</span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">createFunction</span><span class="pun">(</span><span class="str">"star"</span><span class="pun">, &amp;</span><span class="pln">star</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"SELECT star(5)"</span><span class="pun">)<wbr/>.</span><span class="pln">oneValue</span><span class="pun">!</span><span class="typ">string </span><span class="pun">== </span><span class="str">"*****"</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"SELECT star(3, '♥')"</span><span class="pun">)<wbr/>.</span><span class="pln">oneValue</span><span class="pun">!</span><span class="typ">string </span><span class="pun">== </span><span class="str">"♥♥♥"</span><span class="pun">);
+
+</span></code></pre>
+</section>
+<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="com">// The implementation of the new function
+</span><span class="typ">string </span><span class="pln">myList</span><span class="pun">(</span><span class="typ">ColumnData</span><span class="pun">[] </span><span class="pln">args</span><span class="pun">)
+{
+    </span><span class="kwd">import </span><span class="pln">std<wbr/></span><span class="pun">.</span><span class="pln">array </span><span class="pun">: </span><span class="pln">appender</span><span class="pun">;
+    </span><span class="kwd">import </span><span class="pln">std<wbr/></span><span class="pun">.</span><span class="typ">string </span><span class="pun">: </span><span class="pln">format</span><span class="pun">, </span><span class="pln">join</span><span class="pun">;
+
+    </span><span class="kwd">auto </span><span class="pln">app </span><span class="pun">= </span><span class="pln">appender</span><span class="pun">!(</span><span class="typ">string</span><span class="pun">[]);
+    </span><span class="kwd">foreach </span><span class="pun">(</span><span class="pln">arg</span><span class="pun">; </span><span class="pln">args</span><span class="pun">)
+    {
+        </span><span class="kwd">if </span><span class="pun">(</span><span class="pln">arg<wbr/></span><span class="pun">.</span><span class="pln">type </span><span class="pun">== <a href="../../d2sqlite3/database/SqliteType.html#TEXT"></span><span class="typ">SqliteType<wbr/></span><span class="pun">.</span><span class="pln">TEXT</span></a><span class="pun">)
+            </span><span class="pln">app<wbr/></span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="str">`"%s"`<wbr/></span><span class="pun">.</span><span class="pln">format</span><span class="pun">(</span><span class="pln">arg</span><span class="pun">));
+        </span><span class="kwd">else
+            </span><span class="pln">app<wbr/></span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="str">"%s"<wbr/></span><span class="pun">.</span><span class="pln">format</span><span class="pun">(</span><span class="pln">arg</span><span class="pun">));
+    }
+    </span><span class="kwd">return </span><span class="pln">app<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="str">", "</span><span class="pun">);
+}
+
+</span><span class="kwd">auto </span><span class="pln">db </span><span class="pun">= <a href="../../d2sqlite3/database/Database.html"></span><span class="typ">Database</span></a><span class="pun">(</span><span class="str">":memory:"</span><span class="pun">);
+</span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">createFunction</span><span class="pun">(</span><span class="str">"my_list"</span><span class="pun">, &amp;</span><span class="pln">myList</span><span class="pun">);
+</span><span class="kwd">auto </span><span class="pln">list </span><span class="pun">= </span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"SELECT my_list(42, 3.14, 'text', NULL)"</span><span class="pun">)<wbr/>.</span><span class="pln">oneValue</span><span class="pun">!</span><span class="typ">string</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">list </span><span class="pun">== </span><span class="str">`42, 3.14, "text", null`</span><span class="pun">);
+
+</span></code></pre>
+</section>
+
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Nicolas Sicard (biozic) and other contributors at <a href="https://github.com/biozic/d2sqlite3">https://github.com/biozic/d2sqlite3</a>
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>Copyright 2011-18 Nicolas Sicard.
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p><a href="http://www.boost.org/LICENSE_1_0.txt">Boost License 1.0</a>.
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

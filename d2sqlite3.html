@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Module d2sqlite3</title>
+		<link rel="stylesheet" type="text/css" href="./styles/ddox.css"/>
+		<link rel="stylesheet" href="./prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="./scripts/jquery.js">/**/</script><script type="text/javascript" src="./scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="./symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "./";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package selected">
+						<a href="./d2sqlite3.html">d2sqlite3</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./d2sqlite3/database.html">database</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./d2sqlite3/library.html">library</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./d2sqlite3/results.html">results</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./d2sqlite3/sqlite3.html">sqlite3</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./d2sqlite3/statement.html">statement</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Module d2sqlite3</h1><p>D2SQLite3 provides a thin and convenient wrapper around the SQLite C API.
+</p><section></section>
+
+			<section><section><h2>Features</h2>
+<p><ul>    <li>Use reference-counted structs (<code class="lang-d"><span class="typ">Database</span></code>, <code class="lang-d"><span class="typ">Statement</span></code>) instead of SQLite objects
+    pointers.</li>
+    <li>Run multistatement SQL code with <code class="lang-d"><span class="typ">Database<wbr/></span><span class="pun">.</span><span class="pln">run</span><span class="pun">()</span></code>.</li>
+    <li>Use built-in integral types, floating point types, <code class="lang-d"><span class="typ">string</span></code>, <code class="lang-d"><span class="kwd">immutable</span><span class="pun">(</span><span class="typ">ubyte</span><span class="pun">)[]</span></code> and
+    <code class="lang-d"><span class="typ">Nullable</span></code> types directly: conversions to and from SQLite types is automatic and GC-safe.</li>
+    <li>Bind multiple values to a prepare statement with <code class="lang-d"><span class="typ">Statement<wbr/></span><span class="pun">.</span><span class="pln">bindAll</span><span class="pun">()</span></code> or
+    <code class="lang-d"><span class="typ">Statement<wbr/></span><span class="pun">.</span><span class="pln">inject</span><span class="pun">()</span></code>. It's also possible to bind the fields of a struct automatically with
+    <code class="lang-d"><span class="typ">Statement<wbr/></span><span class="pun">.</span><span class="pln">inject</span><span class="pun">()</span></code>.</li>
+    <li>Handle the results of a query as a range of <code class="lang-d"><span class="typ">Row</span></code>s, and the columns of a row
+    as a range of <code class="lang-d"><span class="typ">ColumnData</span></code> (equivalent of a <code class="lang-d"><span class="typ">Variant</span></code> fit for SQLite types).</li>
+    <li>Access the data in a result row directly, by index or by name,
+    with the <code class="lang-d"><span class="typ">Row<wbr/></span><span class="pun">.</span><span class="pln">peek</span><span class="pun">!</span><span class="pln">T</span><span class="pun">()</span></code> methods.</li>
+    <li>Make a struct out of the data of a row with <code class="lang-d"><span class="typ">Row<wbr/></span><span class="pun">.</span><span class="pln">as</span><span class="pun">!</span><span class="pln">T</span><span class="pun">()</span></code>.</li>
+    <li>Register D functions as SQLite callbacks, with <code class="lang-d"><span class="typ">Database<wbr/></span><span class="pun">.</span><span class="pln">setUpdateHook</span><span class="pun">()</span></code> <i>et al</i>.</li>
+    <li>Create new SQLite functions, aggregates or collations out of D functions or delegate,
+    with automatic type converions, with <code class="lang-d"><span class="typ">Database<wbr/></span><span class="pun">.</span><span class="pln">createFunction</span><span class="pun">()</span></code> <i>et al</i>.</li>
+    <li>Store all the rows and columns resulting from a query at once with the <code class="lang-d"><span class="pln">cached</span></code> function
+    (sometimes useful even if not memory-friendly...).</li>
+    <li>Use an unlock notification when two or more connections access the same database in
+    shared-cache mode, either using SQLite's dedicated API (sqlite_unlock_notify) or using an
+    emulated equivalent.</li>
+</ul>
+</p>
+</section>
+<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="com">// Note: exception handling is left aside for clarity.
+</span><span class="kwd">import </span><span class="pln">d2sqlite3</span><span class="pun">;
+</span><span class="kwd">import </span><span class="pln">std<wbr/></span><span class="pun">.</span><span class="pln">typecons </span><span class="pun">: </span><span class="typ">Nullable</span><span class="pun">;
+
+</span><span class="com">// Open a database in memory.
+</span><span class="kwd">auto </span><span class="pln">db </span><span class="pun">= </span><span class="typ">Database</span><span class="pun">(</span><span class="str">":memory:"</span><span class="pun">);
+
+</span><span class="com">// Create a table
+</span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">run</span><span class="pun">(</span><span class="str">"DROP TABLE IF EXISTS person;
+        CREATE TABLE person (
+          id    INTEGER PRIMARY KEY,
+          name  TEXT NOT NULL,
+          score FLOAT
+        )"</span><span class="pun">);
+
+</span><span class="com">// Prepare an INSERT statement
+</span><span class="typ">Statement </span><span class="pln">statement </span><span class="pun">= </span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">prepare</span><span class="pun">(
+    </span><span class="str">"INSERT INTO person (name, score)
+     VALUES (:name, :score)"
+</span><span class="pun">);
+
+</span><span class="com">// Bind values one by one (by parameter name or index)
+</span><span class="pln">statement<wbr/></span><span class="pun">.</span><span class="pln">bind</span><span class="pun">(</span><span class="str">":name"</span><span class="pun">, </span><span class="str">"John"</span><span class="pun">);
+</span><span class="pln">statement<wbr/></span><span class="pun">.</span><span class="pln">bind</span><span class="pun">(</span><span class="lit">2</span><span class="pun">, </span><span class="lit">77.5</span><span class="pun">);
+</span><span class="pln">statement<wbr/></span><span class="pun">.</span><span class="pln">execute</span><span class="pun">();
+</span><span class="pln">statement<wbr/></span><span class="pun">.</span><span class="pln">reset</span><span class="pun">(); </span><span class="com">// Need to reset the statement after execution.
+
+// Bind muliple values at the same time
+</span><span class="pln">statement<wbr/></span><span class="pun">.</span><span class="pln">bindAll</span><span class="pun">(</span><span class="str">"John"</span><span class="pun">, </span><span class="kwd">null</span><span class="pun">);
+</span><span class="pln">statement<wbr/></span><span class="pun">.</span><span class="pln">execute</span><span class="pun">();
+</span><span class="pln">statement<wbr/></span><span class="pun">.</span><span class="pln">reset</span><span class="pun">();
+
+</span><span class="com">// Bind, execute and reset in one call
+</span><span class="pln">statement<wbr/></span><span class="pun">.</span><span class="pln">inject</span><span class="pun">(</span><span class="str">"Clara"</span><span class="pun">, </span><span class="lit">88.1</span><span class="pun">);
+
+</span><span class="com">// Count the changes
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">totalChanges </span><span class="pun">== </span><span class="lit">3</span><span class="pun">);
+
+</span><span class="com">// Count the Johns in the table.
+</span><span class="kwd">auto </span><span class="pln">count </span><span class="pun">= </span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"SELECT count(*) FROM person WHERE name == 'John'"</span><span class="pun">)
+               <wbr/>.</span><span class="pln">oneValue</span><span class="pun">!</span><span class="typ">long</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">count </span><span class="pun">== </span><span class="lit">2</span><span class="pun">);
+
+</span><span class="com">// Read the data from the table lazily
+</span><span class="typ">ResultRange </span><span class="pln">results </span><span class="pun">= </span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"SELECT * FROM person"</span><span class="pun">);
+</span><span class="kwd">foreach </span><span class="pun">(</span><span class="typ">Row </span><span class="pln">row</span><span class="pun">; </span><span class="pln">results</span><span class="pun">)
+{
+    </span><span class="com">// Retrieve "id", which is the column at index 0, and contains an int,
+    // e.g. using the peek function (best performance).
+    </span><span class="kwd">auto </span><span class="pln">id </span><span class="pun">= </span><span class="pln">row<wbr/></span><span class="pun">.</span><span class="pln">peek</span><span class="pun">!</span><span class="typ">long</span><span class="pun">(</span><span class="lit">0</span><span class="pun">);
+
+    </span><span class="com">// Retrieve "name", e.g. using opIndex(string), which returns a ColumnData.
+    </span><span class="kwd">auto </span><span class="pln">name </span><span class="pun">= </span><span class="pln">row</span><span class="pun">[</span><span class="str">"name"</span><span class="pun">]<wbr/>.</span><span class="pln">as</span><span class="pun">!</span><span class="typ">string</span><span class="pun">;
+
+    </span><span class="com">// Retrieve "score", which is at index 2, e.g. using the peek function,
+    // using a Nullable type
+    </span><span class="kwd">auto </span><span class="pln">score </span><span class="pun">= </span><span class="pln">row<wbr/></span><span class="pun">.</span><span class="pln">peek</span><span class="pun">!(</span><span class="typ">Nullable</span><span class="pun">!</span><span class="typ">double</span><span class="pun">)(</span><span class="lit">2</span><span class="pun">);
+    </span><span class="kwd">if </span><span class="pun">(!</span><span class="pln">score<wbr/></span><span class="pun">.</span><span class="pln">isNull</span><span class="pun">)
+    {
+        </span><span class="com">// ...
+    </span><span class="pun">}
+}
+</span></code></pre>
+</section>
+</section>
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Nicolas Sicard (biozic) and other contributors at <a href="https://github.com/biozic/d2sqlite3">https://github.com/biozic/d2sqlite3</a>
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>Copyright 2011-18 Nicolas Sicard.
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p><a href="http://www.boost.org/LICENSE_1_0.txt">Boost License 1.0</a>.
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

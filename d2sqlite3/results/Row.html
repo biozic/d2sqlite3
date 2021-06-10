@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Struct Row</title>
+		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../d2sqlite3.html">d2sqlite3</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/database.html">database</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/library.html">library</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../../d2sqlite3/results.html">results</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/sqlite3.html">sqlite3</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/statement.html">statement</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Struct Row</h1><p>A row returned when stepping over an SQLite prepared statement.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="kwd">struct</span> <span class="typ">Row</span>
+			<span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section><p>The data of each column can be retrieved:
+<ul>    <li>using Row as a random-access range of ColumnData.</li>
+    <li>using the more direct peek functions.</li>
+</ul>
+</p>
+</section>
+
+			<section><h2>Properties</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Type</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.back.html" class="public property"><code>back</code></a><span class="tableEntryAnnotation">[get]</span>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><a href="../../d2sqlite3/results/ColumnData.html"><span class="typ">ColumnData</span></a></code></td><td>Range interface.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.empty.html" class="public property"><code>empty</code></a><span class="tableEntryAnnotation">[get]</span>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">bool</span></code></td><td>Range interface.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.front.html" class="public property"><code>front</code></a><span class="tableEntryAnnotation">[get]</span>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><a href="../../d2sqlite3/results/ColumnData.html"><span class="typ">ColumnData</span></a></code></td><td>Range interface.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.length.html" class="public property"><code>length</code></a><span class="tableEntryAnnotation">[get]</span>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">ulong</span></code></td><td>Range interface.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.save.html" class="public property"><code>save</code></a><span class="tableEntryAnnotation">[get]</span>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><a href="../../d2sqlite3/results/Row.html"><span class="typ">Row</span></a></code></td><td>Range interface.
+</td>
+					</tr>
+				</table>
+			</section>
+			<section><h2>Methods</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.as.html" class="public">
+								<code>as</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Returns a struct with field members populated from the row's data.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.columnDeclaredTypeName.html" class="public">
+								<code>columnDeclaredTypeName</code>
+							</a>
+							<span class="tableEntryAnnotation">(columnName)</span>
+						</td>
+						<td>Determines the type of the data in a particular column.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.columnName.html" class="public">
+								<code>columnName</code>
+							</a>
+							<span class="tableEntryAnnotation">(index)</span>
+						</td>
+						<td>Determines the name of a particular column.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.columnType.html" class="public">
+								<code>columnType</code>
+							</a>
+							<span class="tableEntryAnnotation">(index)</span>
+						</td>
+						<td>Determines the type of the data in a particular column.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.opIndex.html" class="public">
+								<code>opIndex</code>
+							</a>
+							<span class="tableEntryAnnotation">(index)</span>
+						</td>
+						<td>Range interface.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.peek.html" class="public">
+								<code>peek</code>
+							</a>
+							<span class="tableEntryAnnotation">(index)</span>
+						</td>
+						<td>Returns the data of a column directly.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.popBack.html" class="public">
+								<code>popBack</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Range interface.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/Row.popFront.html" class="public">
+								<code>popFront</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Range interface.
+</td>
+					</tr>
+				</table>
+			</section>
+			<section><h2>Warning</h2>
+<p>The data of the row is invalid when the next row is accessed (after a call to
+    <code class="lang-d"><a href="../../d2sqlite3/results/ResultRange.popFront.html"><span class="typ">ResultRange<wbr/></span><span class="pun">.</span><span class="pln">popFront</span></a><span class="pun">()</span></code>).
+</p>
+</section>
+
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Nicolas Sicard (biozic) and other contributors at <a href="https://github.com/biozic/d2sqlite3">https://github.com/biozic/d2sqlite3</a>
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>Copyright 2011-18 Nicolas Sicard.
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p><a href="http://www.boost.org/LICENSE_1_0.txt">Boost License 1.0</a>.
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

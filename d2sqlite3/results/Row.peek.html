@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Function Row.peek</title>
+		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../d2sqlite3.html">d2sqlite3</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/database.html">database</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/library.html">library</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../../d2sqlite3/results.html">results</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/sqlite3.html">sqlite3</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/statement.html">statement</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Function Row.peek</h1><p>Returns the data of a column directly.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="pln">T</span> <span class="pln">peek</span>(T)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">size_t</span> <span class="pln">index</span>
+			<br/>
+			<span class="pun">)</span>
+			<br/>
+			<span class="kwd">if</span> <span class="pun">(</span><span class="pln">isBoolean</span><span class="pun">!</span><span class="pln">T </span><span class="pun">|| </span><span class="pln">isIntegral</span><span class="pun">!</span><span class="pln">T </span><span class="pun">|| </span><span class="pln">isSomeChar</span><span class="pun">!</span><span class="pln">T</span><span class="pun">);</span>
+			<br/>
+			<br/>
+			<span class="pln">T</span> <span class="pln">peek</span>(T)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">size_t</span> <span class="pln">index</span>
+			<br/>
+			<span class="pun">)</span>
+			<br/>
+			<span class="kwd">if</span> <span class="pun">(</span><span class="pln">isFloatingPoint</span><span class="pun">!</span><span class="pln">T</span><span class="pun">);</span>
+			<br/>
+			<br/>
+			<span class="pln">T</span> <span class="pln">peek</span>(T, <a href="../../d2sqlite3/results/PeekMode.html"><span class="typ">PeekMode</span></a> mode<span class="pln"> </span><span class="pun">= </span><span class="typ">PeekMode<wbr/></span><span class="pun">.</span><span class="pln">copy</span>)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">size_t</span> <span class="pln">index</span>
+			<br/>
+			<span class="pun">)</span>
+			<br/>
+			<span class="kwd">if</span> <span class="pun">(</span><span class="pln">isSomeString</span><span class="pun">!</span><span class="pln">T</span><span class="pun">);</span>
+			<br/>
+			<br/>
+			<span class="pln">T</span> <span class="pln">peek</span>(T, <a href="../../d2sqlite3/results/PeekMode.html"><span class="typ">PeekMode</span></a> mode<span class="pln"> </span><span class="pun">= </span><span class="typ">PeekMode<wbr/></span><span class="pun">.</span><span class="pln">copy</span>)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">size_t</span> <span class="pln">index</span>
+			<br/>
+			<span class="pun">)</span>
+			<br/>
+			<span class="kwd">if</span> <span class="pun">(</span><span class="pln">isArray</span><span class="pun">!</span><span class="pln">T </span><span class="pun">&amp;&amp; !</span><span class="pln">isSomeString</span><span class="pun">!</span><span class="pln">T</span><span class="pun">);</span>
+			<br/>
+			<br/>
+			<span class="pln">T</span> <span class="pln">peek</span>(T)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">size_t</span> <span class="pln">index</span>
+			<br/>
+			<span class="pun">)</span>
+			<br/>
+			<span class="kwd">if</span> <span class="pun">(</span><span class="pln">isInstanceOf</span><span class="pun">!(</span><span class="typ">Nullable</span><span class="pun">, </span><span class="pln">T</span><span class="pun">) &amp;&amp; !</span><span class="pln">isArray</span><span class="pun">!(</span><span class="typ">TemplateArgsOf</span><span class="pun">!</span><span class="pln">T</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]) &amp;&amp; !</span><span class="pln">isSomeString</span><span class="pun">!(</span><span class="typ">TemplateArgsOf</span><span class="pun">!</span><span class="pln">T</span><span class="pun">[</span><span class="lit">0</span><span class="pun">])</span><span class="pun">);</span>
+			<br/>
+			<br/>
+			<span class="pln">T</span> <span class="pln">peek</span>(T, <a href="../../d2sqlite3/results/PeekMode.html"><span class="typ">PeekMode</span></a> mode<span class="pln"> </span><span class="pun">= </span><span class="typ">PeekMode<wbr/></span><span class="pun">.</span><span class="pln">copy</span>)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">size_t</span> <span class="pln">index</span>
+			<br/>
+			<span class="pun">)</span>
+			<br/>
+			<span class="kwd">if</span> <span class="pun">(</span><span class="pln">isInstanceOf</span><span class="pun">!(</span><span class="typ">Nullable</span><span class="pun">, </span><span class="pln">T</span><span class="pun">) &amp;&amp; (</span><span class="pln">isArray</span><span class="pun">!(</span><span class="typ">TemplateArgsOf</span><span class="pun">!</span><span class="pln">T</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]) || </span><span class="pln">isSomeString</span><span class="pun">!(</span><span class="typ">TemplateArgsOf</span><span class="pun">!</span><span class="pln">T</span><span class="pun">[</span><span class="lit">0</span><span class="pun">]))</span><span class="pun">);</span>
+			<br/>
+			<br/>
+			<span class="pln">T</span> <span class="pln">peek</span>(T)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">string</span> <span class="pln">columnName</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section><p>Contrary to <code class="lang-d"><a href="../../d2sqlite3/results/Row.opIndex.html"><span class="pln">opIndex</span></a></code>, the <code class="lang-d"><span class="pln">peek</span></code> functions return the data directly, automatically cast to T,
+    without the overhead of using a wrapping type (<code class="lang-d"><a href="../../d2sqlite3/results/ColumnData.html"><span class="typ">ColumnData</span></a></code>).
+</p>
+
+<p>    When using <code class="lang-d"><span class="pln">peek</span></code> to retrieve an array or a string, you can use either:
+        <ul>            <li><code class="lang-d"><span class="pln">peek</span><span class="pun">!(..., <a href="../../d2sqlite3/results/PeekMode.html#copy"></span><span class="typ">PeekMode<wbr/></span><span class="pun">.</span><span class="pln">copy</span></a><span class="pun">)(<a href="../../d2sqlite3/results/Row.peek.html#index"></span><span class="pln">index</span></a><span class="pun">)</span></code>,
+              in which case the function returns a copy of the data that will outlive the step
+              to the next row,
+            or</li>
+            <li><code class="lang-d"><span class="pln">peek</span><span class="pun">!(..., <a href="../../d2sqlite3/results/PeekMode.html#slice"></span><span class="typ">PeekMode<wbr/></span><span class="pun">.</span><span class="pln">slice</span></a><span class="pun">)(<a href="../../d2sqlite3/results/Row.peek.html#index"></span><span class="pln">index</span></a><span class="pun">)</span></code>,
+              in which case a slice of SQLite's internal buffer is returned (see Warnings).</li>
+        </ul>
+</p>
+</section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="T">T</td><td> The type of the returned data. T must be a boolean, a built-in numeric type, a
+        string, an array or a <code class="lang-d"><span class="typ">Nullable</span></code>.
+        <table>            <tr>                <th>Condition on T</th>
+                <th>Requested database type</th>
+            </tr>
+            <tr>                <td><code class="lang-d"><span class="pln">isIntegral</span><span class="pun">!</span><span class="pln">T </span><span class="pun">|| </span><span class="pln">isBoolean</span><span class="pun">!</span><span class="pln">T</span></code></td>
+                <td>INTEGER</td>
+            </tr>
+            <tr>                <td><code class="lang-d"><span class="pln">isFloatingPoint</span><span class="pun">!</span><span class="pln">T</span></code></td>
+                <td>FLOAT</td>
+            </tr>
+            <tr>                <td><code class="lang-d"><span class="pln">isSomeString</span><span class="pun">!</span><span class="pln">T</span></code></td>
+                <td>TEXT</td>
+            </tr>
+            <tr>                <td><code class="lang-d"><span class="pln">isArray</span><span class="pun">!</span><span class="pln">T</span></code></td>
+                <td>BLOB</td>
+            </tr>
+            <tr>                <td><code class="lang-d"><span class="kwd">is</span><span class="pun">(</span><span class="pln">T </span><span class="pun">== </span><span class="typ">Nullable</span><span class="pun">!</span><span class="pln">U</span><span class="pun">, </span><span class="pln">U</span><span class="pun">...)</span></code></td>
+                <td>NULL or U</td>
+            </tr>
+        </table>
+</td></tr>
+<tr><td id="index">index</td><td> The index of the column in the prepared statement or
+        the name of the column, as specified in the prepared statement
+        with an AS clause. The index of the first column is 0.</td></tr>
+</table>
+</section>
+<section><h2>Returns</h2>
+<p>A value of type T. The returned value results from SQLite's own conversion rules:
+        see <a href="http://www.sqlite.org/c3ref/column_blob.html">http://www.sqlite.org/c3ref/column_blob.html</a> and
+        <a href="http://www.sqlite.org/lang_expr.html#castexpr">http://www.sqlite.org/lang_expr.html#castexpr</a>. It's then converted
+        to T using <code class="lang-d"><span class="pln">std<wbr/></span><span class="pun">.</span><span class="pln">conv<wbr/></span><span class="pun">.</span><span class="pln">to</span><span class="pun">!</span><span class="pln">T</span></code>.
+</p>
+</section>
+<section><h2>Warnings</h2>
+<p>When using <code class="lang-d"><a href="../../d2sqlite3/results/PeekMode.html#slice"><span class="typ">PeekMode<wbr/></span><span class="pun">.</span><span class="pln">slice</span></a></code>, the data of the slice will be <b>invalidated</b>
+        when the next row is accessed. A copy of the data has to be made somehow for it to
+        outlive the next step on the same statement.
+</p>
+
+<p>        When using referring to the column by name, the names of all the columns are
+        tested each time this function is called: use
+        numeric indexing for better performance.
+</p>
+</section>
+
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Nicolas Sicard (biozic) and other contributors at <a href="https://github.com/biozic/d2sqlite3">https://github.com/biozic/d2sqlite3</a>
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>Copyright 2011-18 Nicolas Sicard.
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p><a href="http://www.boost.org/LICENSE_1_0.txt">Boost License 1.0</a>.
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Struct ResultRange</title>
+		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../d2sqlite3.html">d2sqlite3</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/database.html">database</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/library.html">library</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../../d2sqlite3/results.html">results</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/sqlite3.html">sqlite3</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/statement.html">statement</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Struct ResultRange</h1><p>An input range interface to access the rows resulting from an SQL query.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="kwd">struct</span> <span class="typ">ResultRange</span>
+			<span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section><p>The elements of the range are <code class="lang-d"><a href="../../d2sqlite3/results/Row.html"><span class="typ">Row</span></a></code> structs. A <code class="lang-d"><a href="../../d2sqlite3/results/Row.html"><span class="typ">Row</span></a></code> is just a view of the current
+row when iterating the results of a <code class="lang-d"><span class="typ">ResultRange</span></code>. It becomes invalid as soon as
+<code class="lang-d"><a href="../../d2sqlite3/results/ResultRange.popFront.html"><span class="typ">ResultRange<wbr/></span><span class="pun">.</span><span class="pln">popFront</span></a><span class="pun">()</span></code> is called (it contains undefined data afterwards). Use
+<code class="lang-d"><a href="../../d2sqlite3/results/cached.html"><span class="pln">cached</span></a></code> to store the content of rows past the execution of the statement.
+</p>
+
+<p>Instances of this struct are typically returned by <code class="lang-d"><span class="typ">Database<wbr/></span><span class="pun">.</span><span class="pln">execute</span><span class="pun">()</span></code> or
+<code class="lang-d"><span class="typ">Statement<wbr/></span><span class="pun">.</span><span class="pln">execute</span><span class="pun">()</span></code>.
+</p>
+</section>
+
+			<section><h2>Properties</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Type</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/ResultRange.empty.html" class="public property"><code>empty</code></a><span class="tableEntryAnnotation">[get]</span>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><span class="typ">bool</span></code></td><td>Range interface.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/ResultRange.front.html" class="public property"><code>front</code></a><span class="tableEntryAnnotation">[get]</span>
+						</td>
+						<td class="typecol"><code class="prettyprint lang-d"><a href="../../d2sqlite3/results/Row.html"><span class="typ">Row</span></a></code></td><td>Range interface.
+</td>
+					</tr>
+				</table>
+			</section>
+			<section><h2>Methods</h2>
+				<table>
+					<col class="caption"/>
+					<tr>
+						<th>Name</th><th>Description</th>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/ResultRange.oneValue.html" class="public">
+								<code>oneValue</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Gets only the first value of the first row returned by the execution of the statement.
+</td>
+					</tr>
+					<tr>
+						<td>
+							<a href="../../d2sqlite3/results/ResultRange.popFront.html" class="public">
+								<code>popFront</code>
+							</a>
+							<span class="tableEntryAnnotation">()</span>
+						</td>
+						<td>Range interface.
+</td>
+					</tr>
+				</table>
+			</section>
+			<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="kwd">auto </span><span class="pln">db </span><span class="pun">= </span><span class="typ">Database</span><span class="pun">(</span><span class="str">":memory:"</span><span class="pun">);
+</span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">run</span><span class="pun">(</span><span class="str">"CREATE TABLE test (i INTEGER);
+        INSERT INTO test VALUES (1);
+        INSERT INTO test VALUES (2);"</span><span class="pun">);
+
+</span><span class="kwd">auto </span><span class="pln">results </span><span class="pun">= </span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"SELECT * FROM test"</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">results<wbr/></span><span class="pun">.</span><span class="pln">empty</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">results<wbr/></span><span class="pun">.</span><span class="pln">front<wbr/></span><span class="pun">.</span><span class="pln">peek</span><span class="pun">!</span><span class="typ">long</span><span class="pun">(</span><span class="lit">0</span><span class="pun">) == </span><span class="lit">1</span><span class="pun">);
+</span><span class="pln">results<wbr/></span><span class="pun">.</span><span class="pln">popFront</span><span class="pun">();
+</span><span class="kwd">assert</span><span class="pun">(!</span><span class="pln">results<wbr/></span><span class="pun">.</span><span class="pln">empty</span><span class="pun">);
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">results<wbr/></span><span class="pun">.</span><span class="pln">front<wbr/></span><span class="pun">.</span><span class="pln">peek</span><span class="pun">!</span><span class="typ">long</span><span class="pun">(</span><span class="lit">0</span><span class="pun">) == </span><span class="lit">2</span><span class="pun">);
+</span><span class="pln">results<wbr/></span><span class="pun">.</span><span class="pln">popFront</span><span class="pun">();
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">results<wbr/></span><span class="pun">.</span><span class="pln">empty</span><span class="pun">);
+</span></code></pre>
+</section>
+
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Nicolas Sicard (biozic) and other contributors at <a href="https://github.com/biozic/d2sqlite3">https://github.com/biozic/d2sqlite3</a>
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>Copyright 2011-18 Nicolas Sicard.
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p><a href="http://www.boost.org/LICENSE_1_0.txt">Boost License 1.0</a>.
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

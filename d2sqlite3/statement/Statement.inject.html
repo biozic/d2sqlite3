@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Statement.inject - multiple declarations</title>
+		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../d2sqlite3.html">d2sqlite3</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/database.html">database</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/library.html">library</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/results.html">results</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/sqlite3.html">sqlite3</a>
+					</div>
+				</li>
+				<li>
+					<div class="module selected">
+						<a href="../../d2sqlite3/statement.html">statement</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Statement.inject - multiple declarations</h1>
+			<nav class="page-nav">
+				<ul>
+					<li>
+						<a href="#0">
+							Function <code>Statement.inject</code>
+						</a>
+					</li>
+					<li>
+						<a href="#1">
+							Function <code>Statement.inject</code>
+						</a>
+					</li>
+					<li>
+						<a href="#2">
+							Function <code>Statement.inject</code>
+						</a>
+					</li>
+				</ul>
+			</nav><h2 id="0">Function Statement.inject</h2><p>Binds arguments, executes and resets the statement, in one call.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">void</span> <span class="pln">inject</span>(Args...)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">Args</span> <span class="pln">args</span>
+			<br/>
+			<span class="pun">)</span>
+			<br/>
+			<span class="kwd">if</span> <span class="pun">(</span><span class="pln">allSatisfy</span><span class="pun">!(</span><span class="pln">isBindable</span><span class="pun">, </span><span class="typ">Args</span><span class="pun">)</span><span class="pun">);</span>
+					</div>
+				</code>
+			</div>
+			<section><p>This convenience function is equivalent to:
+</p>
+<pre class="code"><code class="lang-d"><a href="../../d2sqlite3/statement/Statement.bindAll.html"><span class="pln">bindAll</span></a><span class="pun">(<a href="../../d2sqlite3/statement/Statement.inject.html#args"></span><span class="pln">args</span></a><span class="pun">);
+<a href="../../d2sqlite3/statement/Statement.execute.html"></span><span class="pln">execute</span></a><span class="pun">();
+<a href="../../d2sqlite3/statement/Statement.reset.html"></span><span class="pln">reset</span></a><span class="pun">();</span></code></pre>
+</section>
+
+			<h2 id="1">Function Statement.inject</h2><p>Binds the fields of a struct in order, executes and resets the statement, in one call.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">void</span> <span class="pln">inject</span>(T)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="kwd">auto const ref </span><span class="pln">T</span> <span class="pln">obj</span>
+			<br/>
+			<span class="pun">)</span>
+			<br/>
+			<span class="kwd">if</span> <span class="pun">(</span><span class="kwd">is</span><span class="pun">(</span><span class="pln">T </span><span class="pun">== </span><span class="kwd">struct</span><span class="pun">)</span><span class="pun">);</span>
+					</div>
+				</code>
+			</div>
+			
+			<h2 id="2">Function Statement.inject</h2><p>Binds iterable values in order, executes and resets the statement, in one call.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">void</span> <span class="pln">inject</span>(T)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="kwd">auto ref </span><span class="pln">T</span> <span class="pln">obj</span>
+			<br/>
+			<span class="pun">)</span>
+			<br/>
+			<span class="kwd">if</span> <span class="pun">(</span><span class="pun">!</span><span class="pln">isBindable</span><span class="pun">!</span><span class="pln">T </span><span class="pun">&amp;&amp; </span><span class="pln">isIterable</span><span class="pun">!</span><span class="pln">T</span><span class="pun">);</span>
+					</div>
+				</code>
+			</div>
+			
+			
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Nicolas Sicard (biozic) and other contributors at <a href="https://github.com/biozic/d2sqlite3">https://github.com/biozic/d2sqlite3</a>
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>Copyright 2011-18 Nicolas Sicard.
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p><a href="http://www.boost.org/LICENSE_1_0.txt">Boost License 1.0</a>.
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

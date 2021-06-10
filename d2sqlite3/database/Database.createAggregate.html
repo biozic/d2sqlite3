@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Function Database.createAggregate</title>
+		<link rel="stylesheet" type="text/css" href="../../styles/ddox.css"/>
+		<link rel="stylesheet" href="../../prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="../../scripts/jquery.js">/**/</script><script type="text/javascript" src="../../scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="../../symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "../../";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="../../d2sqlite3.html">d2sqlite3</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module selected">
+						<a href="../../d2sqlite3/database.html">database</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/library.html">library</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/results.html">results</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/sqlite3.html">sqlite3</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="../../d2sqlite3/statement.html">statement</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>Function Database.createAggregate</h1><p>Creates and registers a new aggregate function in the database.
+</p>
+			<div class="prototype">
+				<code class="lang-d">
+					<div class="single-prototype">
+			<span class="typ">void</span> <span class="pln">createAggregate</span>(T)
+			<span class="pun">(</span>
+			<br/>
+			&nbsp;&nbsp;<span class="typ">string</span> <span class="pln">name</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<span class="pln">T</span> <span class="pln">agg</span><span class="pun">,</span>
+			<br/>
+			&nbsp;&nbsp;<a href="../../d2sqlite3/database/Deterministic.html"><span class="typ">Deterministic</span></a> <span class="pln">det</span> <span class="pun">=</span> <span class="typ">Deterministic<wbr/></span><span class="pun">.</span><span class="pln">yes</span>
+			<br/>
+			<span class="pun">)</span><span class="pun">;</span>
+					</div>
+				</code>
+			</div>
+			<section></section>
+
+			<section><h2>Parameters</h2>
+<table><col class="caption"><tr><th>Name</th><th>Description</th></tr>
+<tr><td id="name">name</td><td> The name that the aggregate function will have in the database.
+</td></tr>
+<tr><td id="agg">agg</td><td> The struct of type T implementing the aggregate. T must implement
+        at least these two methods: <code class="lang-d"><span class="pln">accumulate</span><span class="pun">()</span></code> and <code class="lang-d"><span class="pln">result</span><span class="pun">()</span></code>.
+        Each parameter and the returned type of <code class="lang-d"><span class="pln">accumulate</span><span class="pun">()</span></code> and <code class="lang-d"><span class="pln">result</span><span class="pun">()</span></code> must be
+        a boolean or numeric type, a string, an array, <code class="lang-d"><span class="kwd">null</span></code>, or a <code class="lang-d"><span class="typ">Nullable</span><span class="pun">!</span><span class="pln">T</span></code>
+        where T is any of the previous types. These methods cannot be variadic.
+</td></tr>
+<tr><td id="det">det</td><td> Tells SQLite whether the result of the function is deterministic, i.e. if the
+        result is the same when called with the same parameters. Recent versions of SQLite
+        perform optimizations based on this. Set to <code class="lang-d"><a href="../../d2sqlite3/database/Deterministic.html#no"><span class="typ">Deterministic<wbr/></span><span class="pun">.</span><span class="pln">no</span></a></code> otherwise.</td></tr>
+</table>
+</section>
+<section><h2>See Also</h2>
+<p><a href="http://www.sqlite.org/c3ref/create_function.html">http://www.sqlite.org/c3ref/create_function.html</a>.
+</p>
+</section>
+<section><h2>Example</h2>
+
+<pre class="code"><code class="lang-d"><span class="kwd">import </span><span class="pln">std<wbr/></span><span class="pun">.</span><span class="pln">array </span><span class="pun">: </span><span class="typ">Appender</span><span class="pun">, </span><span class="pln">join</span><span class="pun">;
+
+</span><span class="com">// The implementation of the aggregate function
+</span><span class="kwd">struct </span><span class="typ">Joiner
+</span><span class="pun">{
+    </span><span class="kwd">private
+    </span><span class="pun">{
+        </span><span class="typ">Appender</span><span class="pun">!(</span><span class="typ">string</span><span class="pun">[]) </span><span class="pln">stringList</span><span class="pun">;
+        </span><span class="typ">string </span><span class="pln">separator</span><span class="pun">;
+    }
+
+    </span><span class="kwd">this</span><span class="pun">(</span><span class="typ">string </span><span class="pln">separator</span><span class="pun">)
+    {
+        </span><span class="kwd">this<wbr/></span><span class="pun">.</span><span class="pln">separator </span><span class="pun">= </span><span class="pln">separator</span><span class="pun">;
+    }
+
+    </span><span class="typ">void </span><span class="pln">accumulate</span><span class="pun">(</span><span class="typ">string </span><span class="pln">word</span><span class="pun">)
+    {
+        </span><span class="pln">stringList<wbr/></span><span class="pun">.</span><span class="pln">put</span><span class="pun">(</span><span class="pln">word</span><span class="pun">);
+    }
+
+    </span><span class="typ">string </span><span class="pln">result</span><span class="pun">()
+    {
+        </span><span class="kwd">return </span><span class="pln">stringList<wbr/></span><span class="pun">.</span><span class="pln">data<wbr/></span><span class="pun">.</span><span class="pln">join</span><span class="pun">(</span><span class="pln">separator</span><span class="pun">);
+    }
+}
+
+</span><span class="kwd">auto </span><span class="pln">db </span><span class="pun">= <a href="../../d2sqlite3/database/Database.html"></span><span class="typ">Database</span></a><span class="pun">(</span><span class="str">":memory:"</span><span class="pun">);
+</span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">run</span><span class="pun">(</span><span class="str">"CREATE TABLE test (word TEXT);
+        INSERT INTO test VALUES ('My');
+        INSERT INTO test VALUES ('cat');
+        INSERT INTO test VALUES ('is');
+        INSERT INTO test VALUES ('black');"</span><span class="pun">);
+
+</span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">createAggregate</span><span class="pun">(</span><span class="str">"dash_join"</span><span class="pun">, </span><span class="typ">Joiner</span><span class="pun">(</span><span class="str">"-"</span><span class="pun">));
+</span><span class="kwd">auto </span><span class="pln">text </span><span class="pun">= </span><span class="pln">db<wbr/></span><span class="pun">.</span><span class="pln">execute</span><span class="pun">(</span><span class="str">"SELECT dash_join(word) FROM test"</span><span class="pun">)<wbr/>.</span><span class="pln">oneValue</span><span class="pun">!</span><span class="typ">string</span><span class="pun">;
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">text </span><span class="pun">== </span><span class="str">"My-cat-is-black"</span><span class="pun">);
+
+</span></code></pre>
+</section>
+
+			<footer>
+				<table class="license-info">
+					<tr>
+						<th>Authors</th>
+						<td>
+							<p>Nicolas Sicard (biozic) and other contributors at <a href="https://github.com/biozic/d2sqlite3">https://github.com/biozic/d2sqlite3</a>
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>Copyright</th>
+						<td>
+							<p>Copyright 2011-18 Nicolas Sicard.
+</p>
+
+						</td>
+					</tr>
+					<tr>
+						<th>License</th>
+						<td>
+							<p><a href="http://www.boost.org/LICENSE_1_0.txt">Boost License 1.0</a>.
+</p>
+
+						</td>
+					</tr>
+				</table>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>

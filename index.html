@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+		<title>API documentation</title>
+		<link rel="stylesheet" type="text/css" href="./styles/ddox.css"/>
+		<link rel="stylesheet" href="./prettify/prettify.css" type="text/css"/>
+		<script type="text/javascript" src="./scripts/jquery.js">/**/</script><script type="text/javascript" src="./scripts/ddox.js">/**/</script>
+	</head>
+	<body onload="setupDdox();">
+		<nav id="main-nav">
+			<noscript>
+				<p style="color: red">The search functionality needs JavaScript enabled</p>
+			</noscript>
+			<div id="symbolSearchPane" style="display: none">
+				<form action="#" method="GET">
+					<input id="symbolSearch" type="text" name="q" placeholder="Search for symbols" autocomplete="off" onchange="performSymbolSearch(40);" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"/>
+				</form>
+				<ul id="symbolSearchResults" class="symbolList" style="display: none"></ul><script type="application/javascript" src="./symbols.js"></script><script type="application/javascript">var symbolSearchRootDir = "./";
+$('#symbolSearchPane').show();</script>
+			</div>
+			<ul class="tree-view">
+				<li class="tree-view ">
+					<div class="package ">
+						<a href="./d2sqlite3.html">d2sqlite3</a>
+					</div>
+			<ul class="tree-view">
+				<li>
+					<div class="module ">
+						<a href="./d2sqlite3/database.html">database</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./d2sqlite3/library.html">library</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./d2sqlite3/results.html">results</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./d2sqlite3/sqlite3.html">sqlite3</a>
+					</div>
+				</li>
+				<li>
+					<div class="module ">
+						<a href="./d2sqlite3/statement.html">statement</a>
+					</div>
+				</li>
+			</ul>
+				</li>
+			</ul>
+		</nav>
+		<div id="main-contents">
+			<h1>API documentation</h1>
+			<table>
+				<col class="caption"/>
+				<tr>
+					<th>Module</th><th>Description</th>
+				</tr>
+			<tr>
+				<td>
+					<a href="./d2sqlite3/database.html">d2sqlite3.database</a>
+				</td>
+				<td>
+					Managing SQLite3 database connections.
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./d2sqlite3/library.html">d2sqlite3.library</a>
+				</td>
+				<td>
+					Miscellaneous SQLite3 library functions.
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./d2sqlite3/results.html">d2sqlite3.results</a>
+				</td>
+				<td>
+					Managing query results.
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./d2sqlite3/sqlite3.html">d2sqlite3.sqlite3</a>
+				</td>
+				<td>
+					Auto-generated C API bindings.
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./d2sqlite3/statement.html">d2sqlite3.statement</a>
+				</td>
+				<td>
+					Managing prepared statements.
+
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="./d2sqlite3.html">d2sqlite3</a>
+				</td>
+				<td>
+					D2SQLite3 provides a thin and convenient wrapper around the SQLite C API.
+
+				</td>
+			</tr>
+			</table>
+			<footer>
+				<p class="faint">Generated using the DDOX documentation generator</p>
+			</footer>
+		</div>
+	</body>
+</html>
